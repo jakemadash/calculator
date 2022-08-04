@@ -1,0 +1,13 @@
+.calculator {
+    display: flex;
+    font-size: 30px;
+    flex-wrap: wrap;
+    width: 200px;
+    border-style: solid;
+    justify-content: center;
+}
+
+button {
+    font-size: 30px;
+}
+

@@ -33,3 +33,13 @@ const calculator = {
     },
 };
 
+const display = document.getElementById('display');
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => button.addEventListener('click', (e) => {
+    let value = button.textContent;
+        if (!isNaN(parseFloat(value)) || value === '.') {
+            display.textContent += value;
+        }
+    }));
+

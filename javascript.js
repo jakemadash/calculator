@@ -26,7 +26,7 @@ const calculator = {
             case 'x':
                 return this.multiply(num1, num2);
                 break;
-            case '÷':
+            case '/':
                 return this.divide(num1, num2);
                 break;
         }

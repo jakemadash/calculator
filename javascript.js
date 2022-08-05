@@ -35,11 +35,32 @@ const calculator = {
 
 const display = document.getElementById('display');
 const buttons = document.querySelectorAll('button');
+const operators = ['+', '-', 'x', '/'];
+let op;
+let num1;
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
     let value = button.textContent;
-        if (!isNaN(parseFloat(value)) || value === '.') {
+    let float = !isNaN(parseFloat(value)) || value === '.'
+    let operator = operators.includes(value) && display.textContent !== '';
+    let equals = (value === '=' && display.textContent !== '');
+
+        if (typeof op !== 'undefined' && float) {
+            display.textContent = '';
             display.textContent += value;
+        }
+        else if (typeof op !== 'undefined' && (operator || equals)) {
+            num2 = parseFloat(display.textContent);
+            display.textContent = calculator.operate(num1, op, num2);
+        }
+        if (typeof op === 'undefined' && float) {
+            display.textContent += value;
+        }
+        else if (operator) {
+            op = value;
+            num1 = parseFloat(display.textContent);
+            console.log(op, num1);
+            console.log(float);
         }
     }));
 

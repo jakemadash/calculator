@@ -44,7 +44,7 @@ buttons.forEach(button => button.addEventListener('click', (e) => {
     let float = !isNaN(parseFloat(value)) || value === '.'
     let operator = operators.includes(value) && display.textContent !== '';
     let equals = (value === '=' && display.textContent !== '');
-
+      
         if (typeof op !== 'undefined' && float) {
             display.textContent = '';
             display.textContent += value;
@@ -62,5 +62,10 @@ buttons.forEach(button => button.addEventListener('click', (e) => {
             console.log(op, num1);
             console.log(float);
         }
+        else if (value === 'AC') {
+            display.textContent = '';
+            op = num1 = num2 = 'undefined';
+            console.log(op, num1, num2);
+        } 
     }));
 

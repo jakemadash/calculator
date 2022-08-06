@@ -36,6 +36,7 @@ const calculator = {
 const display = document.getElementById('display');
 const buttons = document.querySelectorAll('button');
 const operators = ['+', '-', 'x', '/'];
+const lengthLimit = 8;
 let op;
 let num1;
 let num2;
@@ -54,16 +55,24 @@ buttons.forEach(button => button.addEventListener('click', (e) => {
             if (num2 === undefined) {
                 display.textContent = '';
             }
-            display.textContent += buttonValue;
+            if (display.textContent.length < 8) {
+                display.textContent += buttonValue;
+            }
             num2 = display.textContent;
         }
         else if (calculate) {
-            display.textContent = calculator.operate(num1, op, num2);
+            let result = calculator.operate(num1, op, num2).toPrecision(7)
+            if (result === 'Infinity') {
+                display.textContent = 'Stop it!';
+            }
+            else display.textContent = result;
             num1 = display.textContent;
             num2 = undefined;
         }
         else if (firstNumber) {
-            display.textContent += buttonValue;
+            if (display.textContent.length < 8) {
+                display.textContent += buttonValue;
+            }
         }
         else if (operator) {
             op = buttonValue;
@@ -73,7 +82,7 @@ buttons.forEach(button => button.addEventListener('click', (e) => {
             console.log(op, num1);
             console.log(float);
         }
-        else if (buttonValue === 'AC') {
+        else if (buttonValue === 'C') {
             display.textContent = '';
             op = num1 = num2 = result = undefined;
             console.log(op, num1, num2);

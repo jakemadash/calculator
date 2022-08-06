@@ -1,6 +1,6 @@
 const calculator = {
     add: function (num1, num2) {
-        return num1 + num2;
+        return parseFloat(num1) + parseFloat(num2);
     },
 
     subtract: function(num1, num2) {
@@ -39,6 +39,7 @@ const operators = ['+', '-', 'x', '/'];
 let op;
 let num1;
 let num2;
+let result;
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
     let buttonValue = button.textContent;
@@ -47,28 +48,37 @@ buttons.forEach(button => button.addEventListener('click', (e) => {
     let equals = (buttonValue === '=' && display.textContent !== '');
     let firstNumber = typeof op === 'undefined' && float;
     let secondNumber = typeof op !== 'undefined' && float;
-    let calculate = typeof op !== 'undefined' && (operator || equals);
+    let calculate = typeof op !== 'undefined' && typeof num2 !== 'undefined' && (operator || equals);
       
         if (secondNumber) {
             display.textContent = '';
             display.textContent += buttonValue;
+            num2 = display.textContent;
         }
         else if (calculate) {
-            num2 = parseFloat(display.textContent);
-            display.textContent = calculator.operate(num1, op, num2);
+            if (!result) {
+                num2 = parseFloat(display.textContent);
+            }
+            result = calculator.operate(num1, op, num2);
+            display.textContent = result;
+            num1 = display.textContent;
+            num2 = undefined;
+            op = undefined;
         }
         else if (firstNumber) {
             display.textContent += buttonValue;
         }
         else if (operator) {
             op = buttonValue;
-            num1 = parseFloat(display.textContent);
+            if (num1 === undefined) {
+                num1 = parseFloat(display.textContent);
+            }
             console.log(op, num1);
             console.log(float);
         }
         else if (buttonValue === 'AC') {
             display.textContent = '';
-            op = num1 = num2 = 'undefined';
+            op = num1 = num2 = result = undefined;
             console.log(op, num1, num2);
         } 
     }));

@@ -38,31 +38,35 @@ const buttons = document.querySelectorAll('button');
 const operators = ['+', '-', 'x', '/'];
 let op;
 let num1;
+let num2;
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
-    let value = button.textContent;
-    let float = !isNaN(parseFloat(value)) || value === '.'
-    let operator = operators.includes(value) && display.textContent !== '';
-    let equals = (value === '=' && display.textContent !== '');
+    let buttonValue = button.textContent;
+    let float = !isNaN(parseFloat(buttonValue)) || buttonValue === '.'
+    let operator = operators.includes(buttonValue) && display.textContent !== '';
+    let equals = (buttonValue === '=' && display.textContent !== '');
+    let firstNumber = typeof op === 'undefined' && float;
+    let secondNumber = typeof op !== 'undefined' && float;
+    let calculate = typeof op !== 'undefined' && (operator || equals);
       
-        if (typeof op !== 'undefined' && float) {
+        if (secondNumber) {
             display.textContent = '';
-            display.textContent += value;
+            display.textContent += buttonValue;
         }
-        else if (typeof op !== 'undefined' && (operator || equals)) {
+        else if (calculate) {
             num2 = parseFloat(display.textContent);
             display.textContent = calculator.operate(num1, op, num2);
         }
-        if (typeof op === 'undefined' && float) {
-            display.textContent += value;
+        else if (firstNumber) {
+            display.textContent += buttonValue;
         }
         else if (operator) {
-            op = value;
+            op = buttonValue;
             num1 = parseFloat(display.textContent);
             console.log(op, num1);
             console.log(float);
         }
-        else if (value === 'AC') {
+        else if (buttonValue === 'AC') {
             display.textContent = '';
             op = num1 = num2 = 'undefined';
             console.log(op, num1, num2);

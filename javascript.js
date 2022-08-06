@@ -1,6 +1,6 @@
 const calculator = {
     add: function (num1, num2) {
-        return parseFloat(num1) + parseFloat(num2);
+        return parseInt(num1) + parseInt(num2);
     },
 
     subtract: function(num1, num2) {
@@ -36,15 +36,15 @@ const calculator = {
 const display = document.getElementById('display');
 const buttons = document.querySelectorAll('button');
 const operators = ['+', '-', 'x', '/'];
-const lengthLimit = 8;
 let op;
 let num1;
 let num2;
 let result;
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
+
     let buttonValue = button.textContent;
-    let float = !isNaN(parseFloat(buttonValue))
+    let float = !isNaN(parseInt(buttonValue))
     let operator = operators.includes(buttonValue) && display.textContent !== '';
     let equals = (buttonValue === '=' && display.textContent !== '');
     let firstNumber = typeof op === 'undefined' && float;
@@ -61,11 +61,11 @@ buttons.forEach(button => button.addEventListener('click', (e) => {
             num2 = display.textContent;
         }
         else if (calculate) {
-            let result = calculator.operate(num1, op, num2).toPrecision(7)
+            let result = calculator.operate(num1, op, num2);
             if (result === 'Infinity') {
                 display.textContent = 'Stop it!';
             }
-            else display.textContent = result;
+            else display.textContent = result.toPrecision(7);
             num1 = display.textContent;
             num2 = undefined;
         }
@@ -79,13 +79,10 @@ buttons.forEach(button => button.addEventListener('click', (e) => {
             if (num1 === undefined) {
                 num1 = parseFloat(display.textContent);
             }
-            console.log(op, num1);
-            console.log(float);
         }
         else if (buttonValue === 'C') {
             display.textContent = '';
             op = num1 = num2 = result = undefined;
-            console.log(op, num1, num2);
         } 
     }));
 

@@ -43,7 +43,7 @@ let result;
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
     let buttonValue = button.textContent;
-    let float = !isNaN(parseFloat(buttonValue)) || buttonValue === '.'
+    let float = !isNaN(parseFloat(buttonValue))
     let operator = operators.includes(buttonValue) && display.textContent !== '';
     let equals = (buttonValue === '=' && display.textContent !== '');
     let firstNumber = typeof op === 'undefined' && float;
@@ -51,19 +51,16 @@ buttons.forEach(button => button.addEventListener('click', (e) => {
     let calculate = typeof op !== 'undefined' && typeof num2 !== 'undefined' && (operator || equals);
       
         if (secondNumber) {
-            display.textContent = '';
+            if (num2 === undefined) {
+                display.textContent = '';
+            }
             display.textContent += buttonValue;
             num2 = display.textContent;
         }
         else if (calculate) {
-            if (!result) {
-                num2 = parseFloat(display.textContent);
-            }
-            result = calculator.operate(num1, op, num2);
-            display.textContent = result;
+            display.textContent = calculator.operate(num1, op, num2);
             num1 = display.textContent;
             num2 = undefined;
-            op = undefined;
         }
         else if (firstNumber) {
             display.textContent += buttonValue;

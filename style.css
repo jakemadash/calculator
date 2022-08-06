@@ -1,16 +1,31 @@
 .calculator {
     display: flex;
-    font-size: 30px;
     flex-wrap: wrap;
-    width: 200px;
+    justify-content: space-around;
+    font-size: 80px;
+    width: 350px;
     border-style: solid;
-    justify-content: center;
+    margin: 50px auto;
 }
 
-button {
-    font-size: 30px;
+.calculator > * {
+    display: flex;
+    justify-content: center;
+    width: 300px;
 }
 
 #display {
     padding: 10px;
+    font-size: 60px;
+    border-style: solid;
+    margin: 10px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    font-size: 50px;
+    padding: 10px;
+    margin: 5px;
 }

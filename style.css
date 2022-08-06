@@ -2,10 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    font-size: 80px;
-    width: 350px;
+    font-size: 70px;
+    font-family: "Courier New", monospace;
     border-style: solid;
-    margin: 50px auto;
+    margin: 100px auto;
+    width: 300px;
+    background-color: rgb(44, 44, 77);
 }
 
 .calculator > * {
@@ -14,18 +16,23 @@
     width: 300px;
 }
 
+.row4 {
+    margin: auto -5px;
+}
+
 #display {
     padding: 10px;
-    font-size: 60px;
+    font-size: 50px;
     border-style: solid;
     margin: 10px;
-    height: 70px;
+    height: 50px;
     display: flex;
     justify-content: center;
+    background-color: rgb(129, 202, 178);
 }
 
 button {
-    font-size: 50px;
+    font-size: 40px;
     padding: 10px;
-    margin: 5px;
+    margin: 5px 10px;
 }

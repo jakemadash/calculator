@@ -16,10 +16,6 @@
     width: 300px;
 }
 
-.row4 {
-    margin: auto -5px;
-}
-
 #display {
     padding: 10px;
     font-size: 50px;
@@ -35,4 +31,22 @@ button {
     font-size: 40px;
     padding: 10px;
     margin: 5px 10px;
+    background-color: rgb(196, 196, 185);
+}
+
+.row2 {
+    margin-left: -7px;
+}
+
+.operator {
+    background-color:darkgoldenrod;
+}
+
+#clear {
+    background-color: rgb(222, 97, 97);
+    margin: auto 5px;
+}
+
+#equals {
+    background-color: rgb(62, 131, 108);
 }
